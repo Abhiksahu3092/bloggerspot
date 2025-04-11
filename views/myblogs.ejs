@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/header.ejs') %>
+    <title>My Blogs</title>
+    <link rel="icon" href="/images/bloglogo.png" type="image/png">
+</head>
+<body class="bg-gray-900 text-gray-300">
+    <%- include('./partials/navbar.ejs') %>
+
+    <% if (!myblogs || myblogs.length === 0) { %>
+            <!-- No Blogs Section -->
+            <section class="min-h-screen flex items-center justify-center bg-gray-900 text-center px-6">
+                <div class="max-w-md">
+                    <div class="p-4 bg-gray-800 inline-block rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 9v3m0 0h.01M12 3a9 9 0 100 18 9 9 0 000-18z" />
+                        </svg>
+                    </div>
+                    <h2 class="mt-4 text-2xl font-bold text-white">No Blogs Found</h2>
+                    <p class="mt-2 text-gray-400">It seems there are no blogs yet. Start by adding one!</p>
+                    <div class="flex justify-center gap-4 mt-6">
+                        <a href="/blogs/add_blog" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm">Add a new Blog</a>
+                    </div>
+                </div>
+            </section>
+    <% } else { %>
+        <!-- Blog List Section -->
+        <section class="py-12">
+            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold text-white mb-10 text-center">My Blogs</h1>
+        
+                <% myblogs.forEach(function(blog) { %>
+                    <div class="bg-gray-800 rounded-xl shadow-md overflow-hidden mb-12 lg:flex lg:items-center lg:gap-10">
+                        <!-- Blog Cover Image -->
+                        <div class="w-full lg:w-1/2 h-72 lg:h-96">
+                            <img
+                                class="w-full h-full object-cover"
+                                src="<%= blog.coverimageurl %>"
+                                alt="Blog Cover"
+                            />
+                        </div>
+        
+                        <!-- Blog Content -->
+                        <div class="p-6 lg:w-1/2">
+                            <h2 class="text-2xl font-semibold text-white mb-3">
+                                <%= blog.title %>
+                            </h2>
+                            <p class="text-gray-300 mb-4">
+                                <%= blog.content.substring(0, 230) + '...' %>
+                            </p>
+                            <a href="/blogs/<%= blog._id %>" class="text-blue-500 hover:text-blue-400 underline text-sm">
+                                Read more
+                            </a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </section>               
+    <% } %>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

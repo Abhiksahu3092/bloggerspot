@@ -1,0 +1,32 @@
+<% if (locals.success) { %>
+    <div id="success-alert" class="w-full text-white bg-green-500">
+        <div class="container flex items-center justify-between px-6 py-4 mx-auto">
+            <div class="flex">
+                <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 check-circle">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <p class="mx-3"><%= locals.success %></p>
+            </div>
+            <button id="success-close-btn" class="p-1 transition-colors duration-300 transform rounded-md hover:bg-opacity-25 hover:bg-gray-600 focus:outline-none">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Close button functionality
+        document.getElementById("success-close-btn").addEventListener("click", function() {
+            document.getElementById("success-alert").style.display = "none";
+        });
+
+        // Auto-close after 5 seconds
+        setTimeout(function() {
+            let alertBox = document.getElementById("success-alert");
+            if (alertBox) {
+                alertBox.style.display = "none";
+            }
+        }, 5000);
+    </script>
+<% } %>

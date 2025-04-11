@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/header.ejs') %>
+    <title>Your Profile</title>
+    <link rel="icon" href="/images/bloglogo.png" type="image/png">
+</head>
+
+<body class="bg-gray-900 text-gray-300 min-h-screen flex flex-col">
+    <%- include('./partials/navbar.ejs') %>
+
+    <main class="flex-grow flex items-center justify-center">
+        <section class="w-full max-w-5xl px-6 py-16">
+            <div class="bg-gray-800 rounded-3xl shadow-xl p-10 flex flex-col items-center space-y-8">
+
+                <!-- Profile Image -->
+                <div class="shrink-0">
+                    <img class="w-56 h-56 rounded-full object-cover border-4 border-blue-500 shadow-lg"
+                        src="<%= user.profileimageurl.replace('./', '/') %>"
+                        alt="Profile Picture">
+                </div>
+
+                <!-- Profile Details -->
+                <div class="text-center">
+                    <h2 class="text-white text-4xl md:text-5xl font-extrabold mb-4"><%= user.name %></h2>
+
+                    <p class="text-xl md:text-2xl text-gray-300 mb-2">
+                        📝 <span class="font-semibold text-white"><%= blogs.length %></span> Blogs Published
+                    </p>
+
+                    <p class="text-xl md:text-2xl text-gray-400">
+                        📅 Joined on 
+                        <span class="text-white font-medium">
+                            <%= new Date(userdetail.createdAt).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long'
+                            }) %>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>
