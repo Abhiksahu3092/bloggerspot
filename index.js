@@ -51,5 +51,4 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
 })
 .catch(err =>{
     console.log("connection failed")
-    console.error(err.message)
 })

@@ -28,18 +28,21 @@ router.route("/signup").get((req, res) => {
 })
 
 // post requests
-router.route("/signup").post(upload.single("profileimage"),async (req, res) => {
+router.route("/signup").post(upload.single("profileimage"), async (req, res) => {
     const { name, email, password } = req.body;
+
+    const profileImageFileName = req.file ? req.file.filename : "default.png";
 
     await usermodel.create({
         name,
         email,
         password,
-        profileimageurl: `/images/${req.file.filename}`,
-    })
+        profileimageurl: `/images/${profileImageFileName}`,
+    });
 
-    return res.redirect("/")
-})
+    return res.redirect("/");
+});
+
 
 router.route("/signin").post(async (req, res) => {
     const { email, password } = req.body;
