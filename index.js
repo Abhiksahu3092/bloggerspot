@@ -23,6 +23,8 @@ app.use(checkforauth("token"))
 app.use(express.static(path.resolve("./public")))
 app.use(express.static(path.resolve("./images")))
 
+console.log(process.env.MONGO_URL)
+
 mongoose.connect(process.env.MONGO_URL).then(()=>{
     console.log("Connection Successful")
     app.get("/",async (req,res)=>{
@@ -49,4 +51,5 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
 })
 .catch(err =>{
     console.log("connection failed")
+    console.error(err.message)
 })
