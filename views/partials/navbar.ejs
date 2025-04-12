@@ -35,7 +35,7 @@
             <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 hover:ring-2 hover:ring-white hover:ring-offset-2 hover:ring-offset-gray-800 cursor-pointer " id="user-menu-button">
               <span class="absolute -inset-1.5"></span>
               <span class="sr-only">Open user menu</span>
-              <img class="size-8 rounded-full cursor-pointer" src="<%= user.profileimageurl.replace('./', '/') %>" alt="User Avatar">
+              <img class="size-8 rounded-full cursor-pointer" src="<%= user.profileimageurl.replace('/upload/', '/upload/q_auto,f_auto/') %>" alt="User Avatar">
             </button>
           </div>
           <div id="user-menu" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5">

@@ -45,8 +45,9 @@
                         <div class="w-full lg:w-1/2 h-72 lg:h-96">
                             <img
                                 class="w-full h-full object-cover"
-                                src="<%= blog.coverimageurl %>"
+                                src="<%= blog.coverimageurl.replace('/upload/', '/upload/q_auto,f_auto/')  %>"
                                 alt="Blog Cover"
+                                loading="lazy"
                             />
                         </div>
         

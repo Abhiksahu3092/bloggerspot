@@ -18,7 +18,7 @@
         <div class="mb-6">
           <label class="block text-lg font-semibold text-gray-300 mb-2">Current Cover Image</label>
           <div class="overflow-hidden rounded-lg border-4 border-gray-700">
-            <img src="<%= blog.coverimageurl %>" alt="Current Cover Image" class="w-full h-72 object-cover">
+            <img src="<%= blog.coverimageurl.replace('/upload/', '/upload/q_auto,f_auto/') %>" alt="Current Cover Image" class="w-full h-72 object-cover">
           </div>
         </div>
   

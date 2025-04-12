@@ -66,7 +66,7 @@
       <!-- Author Info -->
       <div class="px-6 sm:px-8 pb-6 flex items-center gap-4">
         <img class="object-cover h-14 w-14 rounded-full ring-2 ring-blue-500 shadow-md"
-          src="<%= blog.author.profileimageurl.replace('./', '/') %>" alt="Avatar">
+          src="<%= blog.author.profileimageurl.replace('/upload/', '/upload/q_auto,f_auto/') %>" alt="Avatar">
         <div>
           <p class="text-lg font-semibold text-gray-800 dark:text-gray-100">
             <%= blog.author.name %>
@@ -112,7 +112,7 @@
           <div class="p-4 sm:p-5 bg-gray-100 dark:bg-gray-700 rounded-xl shadow-sm">
             <div class="flex items-start gap-4">
               <img class="h-10 w-10 rounded-full object-cover ring-2 ring-blue-500"
-                src="<%= comm.author.profileimageurl.replace('./', '/') %>" alt="Author Image">
+                src="<%= comm.author.profileimageurl.replace('/upload/', '/upload/q_auto,f_auto/') %>" alt="Author Image">
 
               <div class="flex-1">
                 <div class="flex justify-between items-center mb-1">
