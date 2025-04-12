@@ -72,27 +72,6 @@ router.route("/:id/delete").post(async (req, res) => {
 });
 
 
-
-router.route("/:id/update").get(async (req, res) => {
-    if (!req.user) {
-        return res.redirect('/user/signin');
-    }
-
-    const blog = await Blog.findById(req.params.id);
-    const comment = req.body.comment;
-    if (!blog || blog.author.toString() !== req.user._id.toString()) {
-        return res.render("blog", {
-            error: "You are not authorized to update this blog.",
-            blog: blog,
-            user: req.user,
-            comments: await Comment.find({ blogid: req.params.id }).populate("author")
-        }); 
-    }
-
-    return res.render("edit_blog", { blog, user: req.user });
-
-})
-
 router.route("/:id/update").post(upload.single("coverimage"), async (req, res) => {
     if (!req.user) {
         return res.redirect('/user/signin');
