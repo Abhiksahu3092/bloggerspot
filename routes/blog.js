@@ -4,11 +4,12 @@ const path = require("path");
 const Blog = require("../models/blogmodel")
 const Comment = require("../models/commentmodel")
 const usermodel = require("../models/usermodel")
+const { storage } = require("../utils/cloudinary")
 
 const router = Router();
 
 // multer config
-const storage = multer.diskStorage({
+/*const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.resolve(`./public/uploads`))
     },
@@ -16,9 +17,9 @@ const storage = multer.diskStorage({
         const filename = `${Date.now()}-${file.originalname}`;
         cb(null, filename)
     }
-})
+})*/
 
-const upload = multer({ storage: storage })
+const upload = multer({storage})
 
 router.route("/add_blog").get((req, res) => {
     if (!req.user) {
@@ -39,7 +40,8 @@ router.route("/:id").get(async (req, res) => {
     const blog = await Blog.findById(req.params.id).populate("author");
     const comments = await Comment.find({ blogid: req.params.id }).populate("author");
     const userdetail = await usermodel.findById(req.user._id);
-    const success = req.query.success;
+    const success = req.query.success
+    console.log(blog);
     return res.render("blog", {
         user: req.user,
         blog,
@@ -100,6 +102,28 @@ router.route("/:id/update").post(upload.single("coverimage"), async (req, res) =
     res.redirect(`/blogs/${req.params.id}?success=Blog updated successfully!`);
 });
 
+router.route("/:id/update").get(async (req,res)=>{
+    if (!req.user) {
+        return res.redirect('/user/signin');
+    }
+
+    const blog = await Blog.findById(req.params.id).populate("author");
+
+    if (!blog || blog.author._id.toString() !== req.user._id.toString()) {
+        return res.render("blog", {
+            error: "You are not authorized to update this blog.",
+            blog: blog,
+            user: req.user,
+            comments: await Comment.find({ blogid: req.params.id }).populate("author")
+        }); 
+    }
+
+    return res.render("edit_blog", {
+        user: req.user,
+        blog
+    })
+})
+
 
 router.route("/comment/:id").post(async (req, res) => {
     if (!req.user) {
@@ -138,7 +162,7 @@ router.route("/").post(upload.single("coverimage"), async (req, res) => {
     const blog = await Blog.create({
         title,
         content,
-        coverimageurl: `/uploads/${req.file.filename}`,
+        coverimageurl: req.file.path,
         author: req.user._id
     })
 

@@ -5,8 +5,9 @@ const usermodel = require("../models/usermodel");
 const blog = require("../models/blogmodel");
 const multer=require("multer");
 const path = require("path");
+const { storage } = require("../utils/cloudinary")
 
-const storage = multer.diskStorage({
+/*const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.resolve(`./public/images`))
     },
@@ -14,9 +15,9 @@ const storage = multer.diskStorage({
         const filename = `${Date.now()}-${file.originalname}`;
         cb(null, filename)
     }
-})
+})*/
 
-const upload = multer({ storage: storage })
+const upload = multer({storage})
 
 //get requests
 router.route("/signin").get((req, res) => {
@@ -31,13 +32,14 @@ router.route("/signup").get((req, res) => {
 router.route("/signup").post(upload.single("profileimage"), async (req, res) => {
     const { name, email, password } = req.body;
 
-    const profileImageFileName = req.file ? req.file.filename : "default.png";
+    const profileImageFileName = req.file ? req.file : "default.png";
+    console.log(profileImageFileName);
 
     await usermodel.create({
         name,
         email,
         password,
-        profileimageurl: `/images/${profileImageFileName}`,
+        profileimageurl: profileImageFileName.path,
     });
 
     return res.redirect("/");
