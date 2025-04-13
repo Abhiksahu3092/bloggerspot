@@ -32,14 +32,13 @@ router.route("/signup").get((req, res) => {
 router.route("/signup").post(upload.single("profileimage"), async (req, res) => {
     const { name, email, password } = req.body;
 
-    const profileImageFileName = req.file ? req.file : "default.png";
-    console.log(profileImageFileName);
+    const profileimageurl = req.file ? req.file : 'https://res.cloudinary.com/dzgdttbuq/image/upload/v1744539856/default_n5ti6d.png';
 
     await usermodel.create({
         name,
         email,
         password,
-        profileimageurl: profileImageFileName.path,
+        profileimageurl,
     });
 
     return res.redirect("/");

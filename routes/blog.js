@@ -41,7 +41,6 @@ router.route("/:id").get(async (req, res) => {
     const comments = await Comment.find({ blogid: req.params.id }).populate("author");
     const userdetail = await usermodel.findById(req.user._id);
     const success = req.query.success
-    console.log(blog);
     return res.render("blog", {
         user: req.user,
         blog,
@@ -158,16 +157,17 @@ router.route("/").post(upload.single("coverimage"), async (req, res) => {
     }
 
     const { title, content } = req.body;
+    const coverimageurl= req.file ? req.file.path : "https://res.cloudinary.com/dzgdttbuq/image/upload/v1744528615/bloglogo_teaatt.png"
 
     const blog = await Blog.create({
         title,
         content,
-        coverimageurl: req.file.path,
+        coverimageurl,
         author: req.user._id
     })
 
 
-    return res.redirect(`/blogs/${blog._id}`);
+    return res.redirect(`/blogs/${blog._id}?success=Blog added successfully!`);
 });
 
 
