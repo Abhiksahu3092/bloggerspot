@@ -11,7 +11,7 @@ const blogschema=new mongoose.Schema({
     },
     coverimageurl:{
         type:String,
-        required:false,
+        required:true,
     },
     author:{
         type:mongoose.Schema.Types.ObjectId,

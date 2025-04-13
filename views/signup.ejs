@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark"> <!-- Force dark mode here -->
 
 <head>
     <%- include('./partials/header.ejs') %>
     <title>Sign Up</title>
-    <link rel="icon" href="/images/bloglogo.png" type="image/png">
+    <link rel="icon" href="https://res.cloudinary.com/dzgdttbuq/image/upload/c_limit,w_100,h_100,q_auto,f_auto/bloglogo_teaatt.png" type="image/png">
 </head>
 
-<body class="min-h-screen bg-white dark:bg-gray-900 flex flex-col">
+<body class="min-h-screen bg-gray-900 flex flex-col text-gray-300"> <!-- Remove bg-white -->
     <%- include('./partials/error.ejs') %>
 
     <section class="flex-grow flex items-center justify-center">
         <div class="container px-6 py-16 mx-auto">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-10">
+                
                 <!-- Logo and Welcome Text -->
                 <div class="lg:w-1/2 text-center lg:text-left flex flex-col items-center lg:items-start justify-center">
                     <div class="flex items-center justify-center lg:justify-start space-x-3 mb-4">
                         <img class="w-auto h-10 sm:h-12" src="/images/bloglogo.png" alt="Logo">
-                        <span class="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white">BloggerSpot</span>
+                        <span class="text-3xl sm:text-4xl font-bold text-white">BloggerSpot</span>
                     </div>
 
-                    <p class="text-gray-600 dark:text-gray-300 md:text-lg">Welcome</p>
+                    <p class="text-gray-300 md:text-lg">Welcome</p>
 
-                    <h1 class="mt-2 text-xl sm:text-2xl font-medium text-gray-800 capitalize lg:text-3xl dark:text-white">
+                    <h1 class="mt-2 text-xl sm:text-2xl font-medium text-white capitalize lg:text-3xl">
                         Create your account
                     </h1>
                 </div>
@@ -30,13 +31,13 @@
                 <!-- Sign Up Form -->
                 <div class="w-full lg:w-1/2">
                     <form class="w-full lg:max-w-xl space-y-6" action="/user/signup" method="POST" enctype="multipart/form-data">
-
-                        <!-- Profile Image Upload (Circular Dropzone) -->
+                        
+                        <!-- Profile Upload -->
                         <div class="flex flex-col items-center justify-center">
-                            <label for="dropzone-file" class="relative w-28 h-28 rounded-full border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center bg-white dark:bg-gray-800 cursor-pointer overflow-hidden">
+                            <label for="dropzone-file" class="relative w-28 h-28 rounded-full border-2 border-dashed border-gray-600 flex items-center justify-center bg-gray-800 cursor-pointer overflow-hidden">
                                 <img id="profile-photo-preview" class="hidden w-full h-full object-cover rounded-full absolute top-0 left-0" alt="Profile Preview" />
                                 <div id="upload-icon" class="flex flex-col items-center justify-center z-10">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                     </svg>
                                     <span class="text-xs text-gray-400 mt-1">Upload</span>
@@ -48,31 +49,31 @@
                         <!-- Full Name -->
                         <div class="relative flex items-center">
                             <span class="absolute left-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A10.97 10.97 0 0112 15c2.57 0 4.926.87 6.879 2.332M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </span>
-                            <input name="name" type="text" required placeholder="Full Name" class="block w-full py-3 pl-12 pr-4 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring focus:ring-blue-300 dark:focus:border-blue-300 focus:outline-none focus:ring-opacity-40" />
+                            <input name="name" type="text" required placeholder="Full Name" class="block w-full py-3 pl-12 pr-4 bg-gray-900 text-gray-300 border border-gray-600 rounded-lg focus:border-blue-400 focus:ring focus:ring-blue-300 focus:outline-none focus:ring-opacity-40" />
                         </div>
 
                         <!-- Email -->
                         <div class="relative flex items-center">
                             <span class="absolute left-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
                             </span>
-                            <input name="email" type="email" required placeholder="Email address" class="block w-full py-3 pl-12 pr-4 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring focus:ring-blue-300 dark:focus:border-blue-300 focus:outline-none focus:ring-opacity-40" />
+                            <input name="email" type="email" required placeholder="Email address" class="block w-full py-3 pl-12 pr-4 bg-gray-900 text-gray-300 border border-gray-600 rounded-lg focus:border-blue-400 focus:ring focus:ring-blue-300 focus:outline-none focus:ring-opacity-40" />
                         </div>
 
                         <!-- Password -->
                         <div class="relative flex items-center">
                             <span class="absolute left-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>
                             </span>
-                            <input name="password" type="password" required placeholder="Password" class="block w-full py-3 pl-12 pr-4 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring focus:ring-blue-300 dark:focus:border-blue-300 focus:outline-none focus:ring-opacity-40" />
+                            <input name="password" type="password" required placeholder="Password" class="block w-full py-3 pl-12 pr-4 bg-gray-900 text-gray-300 border border-gray-600 rounded-lg focus:border-blue-400 focus:ring focus:ring-blue-300 focus:outline-none focus:ring-opacity-40" />
                         </div>
 
                         <!-- Submit -->
@@ -80,12 +81,10 @@
                             <button class="w-full md:w-1/2 px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                 Sign up
                             </button>
-                        
-                            <a href="/user/signin" class="mt-4 md:mt-0 md:ml-6 text-sm text-center text-blue-500 hover:underline dark:text-blue-400">
+                            <a href="/user/signin" class="mt-4 md:mt-0 md:ml-6 text-sm text-blue-400 hover:underline">
                                 Already have an account?
                             </a>
                         </div>
-                        
                     </form>
                 </div>
             </div>
