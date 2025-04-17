@@ -32,8 +32,9 @@ router.route("/signup").get((req, res) => {
 router.route("/signup").post(upload.single("profileimage"), async (req, res) => {
     const { name, email, password } = req.body;
 
-    const profileimageurl = req.file ? req.file : 'https://res.cloudinary.com/dzgdttbuq/image/upload/v1744539856/default_n5ti6d.png';
-
+    const profileimageurl1 = req.file ? req.file : 'https://res.cloudinary.com/dzgdttbuq/image/upload/v1744539856/default_n5ti6d.png';
+    const profileimageurl = profileimageurl1.path ? profileimageurl1.path : profileimageurl1;
+    console.log(profileimageurl);
     await usermodel.create({
         name,
         email,
