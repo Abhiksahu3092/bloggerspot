@@ -14,7 +14,11 @@ const storage = new CloudinaryStorage({
         folder: "bloggerspot",
         public_id: `${Date.now()}-${file.originalname.split('.')[0]}`,
         transformation: [
-          { quality: "auto" }
+          { quality: "auto",
+            fetch_format: "auto",
+            crop: "limit",
+            width: 800
+           }
         ]
       };
     }

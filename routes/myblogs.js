@@ -9,7 +9,7 @@ router.route("/").get(async (req, res) => {
         return res.redirect("/user/signin")
     }
 
-    const myblogs= await blog.find({author:req.user._id});
+    const myblogs= await blog.find({author:req.user._id}).sort({createdAt: -1});
     return res.render("myblogs",{
         myblogs,
         user:req.user

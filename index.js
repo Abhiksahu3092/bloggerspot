@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
 })
 
 app.get("/",async (req,res)=>{
-    const allblogs=await Blog.find({});
+    const allblogs=await Blog.find({}).sort({createdAt: -1});
     if(req.user){
         return res.render("home",{
             user:req.user,
